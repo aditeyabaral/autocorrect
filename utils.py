@@ -12,6 +12,8 @@ def preprocessText(text, lower=False):
     #text = re.sub(r"\(.*\)", "", text)
     text = re.sub(r" +", " ", text)
     text = re.sub("\n+", "\n", text)
+    if lower:
+        text = text.lower()
     return text
 
 def getResolvedText(text, spacy_nlp_model):
@@ -67,3 +69,14 @@ def reduceTriples(triples):
             reduced_triples.append(t)
             sub_edge_covered.append((subject, edge))
     return reduced_triples
+
+def getFilteredTriples(text):
+    triples = getTriplesFromText(text)
+    filtered_triples = []
+    test_list = []
+    for triple in triples:
+        check_string = " ".join(triple.values)
+        if not any(check_string in sub for sub in test_list):
+            test_list.append(check_string)
+            filtered_triples.append(triple)
+    return filtered_triples
