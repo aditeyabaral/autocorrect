@@ -1,7 +1,7 @@
 from gensim.models import FastText, Word2Vec
 from nltk.tokenize import word_tokenize, sent_tokenize
 import numpy as np
-
+import re
 
 def createFastTextModel(corpus):
     sentences = sent_tokenize(corpus)
