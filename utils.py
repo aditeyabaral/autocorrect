@@ -7,6 +7,7 @@ import pandas as pd
 
 stopw = stopwords.words("english")
 
+
 def preprocessText(text, lower=False):
     text = re.sub(r"[^A-Za-z0-9\!\.\?\$\%]", " ", text)
     #text = re.sub(r"\(.*\)", "", text)
@@ -15,6 +16,7 @@ def preprocessText(text, lower=False):
     if lower:
         text = text.lower()
     return text
+
 
 def getResolvedText(text, spacy_nlp_model):
     neuralcoref.add_to_pipe(spacy_nlp_model)
@@ -26,6 +28,7 @@ def getTriplesFromText(text):
     with StanfordOpenIE() as client:
         triples = client.annotate(text)
         return triples
+
 
 def tripleToDataFrame(triples, name):
     df = pd.DataFrame()
@@ -39,6 +42,7 @@ def tripleToDataFrame(triples, name):
     df["object"] = predicate
     df.to_csv(name)
     return df
+
 
 def reduceTriples(triples):
     filtered_triples = list()
@@ -60,7 +64,8 @@ def reduceTriples(triples):
             for index, temp_triple in enumerate(reduced_triples):
                 if (temp_triple["subject"], temp_triple["relation"]) == (subject, edge):
                     if temp_triple["object"] in t["object"] or t["object"] in temp_triple["object"]:
-                        reduced_triples[index]["object"] = max(reduced_triples[index]["object"], t["object"])
+                        reduced_triples[index]["object"] = max(
+                            reduced_triples[index]["object"], t["object"])
                     else:
                         to_append = True
         else:
@@ -69,6 +74,7 @@ def reduceTriples(triples):
             reduced_triples.append(t)
             sub_edge_covered.append((subject, edge))
     return reduced_triples
+
 
 '''def getFilteredTriples(triples):
     filtered_triples = []

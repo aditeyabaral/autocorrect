@@ -3,6 +3,16 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 import numpy as np
 
 
+def getSimilarityBetweenVector(vector1, vector2):
+    return np.dot(vector1, vector2)/(np.linalg.norm(vector1)*np.linalg.norm(vector2))
+
+
+def getSimilarityBetweenText(text1, text2, model):
+    vector1 = getSentenceEmbedding(text1, model)
+    vector2 = getSentenceEmbedding(text2, model)
+    return getSimilarityBetweenVector(vector1, vector2)
+
+
 def createFastTextModel(corpus):
     sentences = sent_tokenize(corpus)
     train = list(map(word_tokenize, sentences))
@@ -31,7 +41,7 @@ def createEmbeddingModel(corpus, mode="fastText"):
     return model
 
 
-def getSentenceEmbedding(document, model, mode):
+def getSentenceEmbedding(document, model, mode="average"):
     if mode == "average":
         words = word_tokenize(document)
         avg_embedding = np.zeros(len(model.wv[0]))
@@ -56,23 +66,23 @@ def getSentenceEmbedding(document, model, mode):
         #             sentence_length += 1
         #         except:
         #             pass
-        # 
+        #
         #     vs = np.divide(np.nan_to_num(vs), sentence_length)
         #     sentence_set.append(vs)
-        # 
+        #
         # pca = PCA()
         # pca.fit(np.array(sentence_set))
         # u = pca.components_[0]
         # u = np.multiply(u, np.transpose(u))
-        # 
+        #
         # if len(u) < embedding_size:
         #     for i in range(embedding_size - len(u)):
         #         u = np.append(u, 0)
-        # 
+        #
         # sentence_vecs = []
         # for vs in sentence_set:
         #     sub = np.multiply(u, vs)
         #     sentence_vecs.append(np.subtract(vs, sub))
-        # 
+        #
         # return sentence_vecs
         pass

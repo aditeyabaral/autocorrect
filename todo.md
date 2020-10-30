@@ -5,3 +5,5 @@
     - [ ] Better graph filtering
     - [ ] Better graph reduction 
     - [ ] Better embedding model
+- [ ] GUI
+- [ ] PPT

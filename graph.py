@@ -17,12 +17,14 @@ text_mito = "The mitochondrion is a double membrane bound organelle found in mos
             The biochemical processes of the cell are known as cellular respiration"
 
 
+text_ml2 = "Machine Learning is a branch of artificial intelligence. Its applications include CV and NLP"
+
 nlp = spacy.load("en_core_web_sm")
-resolved_text = utils.getResolvedText(text_mito, nlp)
+resolved_text = utils.getResolvedText(text_ml2, nlp)
 triples = utils.getTriplesFromText(resolved_text)
 utils.tripleToDataFrame(triples, "before.csv")
 
-#triples = utils.reduceTriples(triples)
+triples = utils.reduceTriples(triples)
 df = utils.tripleToDataFrame(triples, "after.csv")
 
 G = nx.from_pandas_edgelist(df, "subject", "object",
