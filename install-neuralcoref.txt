@@ -1,0 +1,8 @@
+conda create --name autocorrect python=3.6
+conda activate autocorrect
+conda install -c conda-forge spacy==2.1.1
+git clone https://github.com/huggingface/neuralcoref.git
+cd neuralcoref
+pip install pytest cython
+pip install -e .
+python -m spacy download en

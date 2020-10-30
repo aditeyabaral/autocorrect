@@ -1,0 +1,7 @@
+__pycache__
+neuralcoref
+.vscode
+*.hg
+*.props
+*.csv
+.~*

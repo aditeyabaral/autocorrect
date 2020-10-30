@@ -1,0 +1,6 @@
+- [ ] Evaluation
+- [ ] Embedding model - fastText/ELMo
+- [ ] Graph Reduction
+- [ ] Documentation
+- [ ] Video
+- [ ] Improve graph maker
