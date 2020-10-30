@@ -1,7 +1,7 @@
 from gensim.models import FastText, Word2Vec
 from nltk.tokenize import word_tokenize, sent_tokenize
 import numpy as np
-
+import re
 
 def getSimilarityBetweenVector(vector1, vector2):
     return np.dot(vector1, vector2)/(np.linalg.norm(vector1)*np.linalg.norm(vector2))
@@ -44,7 +44,7 @@ def createEmbeddingModel(corpus, mode="fastText"):
 def getSentenceEmbedding(document, model, mode="average"):
     if mode == "average":
         words = word_tokenize(document)
-        avg_embedding = np.zeros(len(model.wv[0]))
+        avg_embedding = np.zeros(len(model.wv['test']))
         counter = 1
         for w in words:
             try:
