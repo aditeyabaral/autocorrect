@@ -1,8 +1,8 @@
 - [ ] Video
-- [ ] PPT
+- [ ] PPT (screenshots)
+- [ ] Devfolio submission (details to be filled)
 - [ ] Improvements
-    - [ ] Neural Coref --> increase span (try stanford)
-    - [ ] Better graph reduction (new algorithm)
-    - [ ] Better embedding model (contextual embeddings)
-    - [ ] Optimise Evaluation
-- [ ] GUI
+    - [ ] Neural Coref --> increase span (try stanford) [PROGRESS]
+    - [ ] Better graph reduction (new algorithm) [OPTIONAL]
+    - [ ] Better embedding model (contextual embeddings) [OPTIONAL]
+    - [ ] Optimise Evaluation --> checking similarity values [PROGRESS]
