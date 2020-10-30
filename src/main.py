@@ -1,6 +1,7 @@
 import graph
 import scoring
 import sys
+import time
 
 # key_answer_file, input_answer_file = sys.argv[1:]
 
@@ -35,5 +36,8 @@ input_answer = ans_ml
 key_answer_graph = graph.createGraph(key_answer, "key")
 input_answer_graph = graph.createGraph(input_answer, "ans")
 
+start = time.time()
 marks = scoring.evaluate(key_answer_graph, input_answer_graph, 4)
-print(round(marks))
+end=time.time()
+print(f"Time taken to grade: {end-start} seconds")
+print((marks))
