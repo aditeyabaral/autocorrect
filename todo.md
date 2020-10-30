@@ -1,9 +1,8 @@
-- [ ] Evaluation
 - [ ] Video
-- [ ] Improvements
-    - [ ] Neural Coref --> increase span
-    - [ ] Better graph filtering
-    - [ ] Better graph reduction 
-    - [ ] Better embedding model
-- [ ] GUI
 - [ ] PPT
+- [ ] Improvements
+    - [ ] Neural Coref --> increase span (try stanford)
+    - [ ] Better graph reduction (new algorithm)
+    - [ ] Better embedding model (contextual embeddings)
+    - [ ] Optimise Evaluation
+- [ ] GUI

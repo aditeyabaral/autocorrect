@@ -3,15 +3,6 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 import numpy as np
 import re
 
-def getSimilarityBetweenVector(vector1, vector2):
-    return np.dot(vector1, vector2)/(np.linalg.norm(vector1)*np.linalg.norm(vector2))
-
-
-def getSimilarityBetweenText(text1, text2, model):
-    vector1 = getSentenceEmbedding(text1, model)
-    vector2 = getSentenceEmbedding(text2, model)
-    return getSimilarityBetweenVector(vector1, vector2)
-
 
 def createFastTextModel(corpus):
     sentences = sent_tokenize(corpus)

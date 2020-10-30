@@ -87,9 +87,10 @@ def reduceTriples(triples):
 
 def getFilteredTriples(triples):
     filtered_triples = []
-    test_list = sorted(list((" ".join(triple.values()), triple) for triple in triples))
+    test_list = sorted(list((" ".join(triple.values()), triple)
+                            for triple in triples))
     for i in range(len(test_list)):
-        if not any(test_list[i][0] in sub[0] for sub in test_list[i + 1 :]):
+        if not any(test_list[i][0] in sub[0] for sub in test_list[i + 1:]):
             filtered_triples.append(test_list[i][1])
     return filtered_triples
 
