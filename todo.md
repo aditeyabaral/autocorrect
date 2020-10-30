@@ -2,4 +2,6 @@
 - [ ] Video
 - [ ] Improvements
     - [ ] Neural Coref --> increase span
-    - [ ] 
+    - [ ] Better graph filtering
+    - [ ] Better graph reduction 
+    - [ ] Better embedding model
