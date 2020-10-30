@@ -31,10 +31,10 @@ def createEmbeddingModel(corpus, mode="fastText"):
     return model
 
 
-def getSentenceEmbedding(document, model, mode):
+def getSentenceEmbedding(document, model, mode="average"):
     if mode == "average":
         words = word_tokenize(document)
-        avg_embedding = np.zeros(len(model.wv[0]))
+        avg_embedding = np.zeros(len(model.wv['test']))
         counter = 1
         for w in words:
             try:
