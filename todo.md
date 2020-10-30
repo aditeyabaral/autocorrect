@@ -1,6 +1,7 @@
 - [ ] Evaluation
-- [ ] Embedding model - fastText/ELMo
+- [ ] Embedding model - get document embedding
 - [ ] Graph Reduction
 - [ ] Documentation
 - [ ] Video
 - [ ] Improve graph maker
+- [ ] Neural Coref --> increase span
