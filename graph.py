@@ -10,10 +10,10 @@ text_ml = "Machine learning is the study of computer algorithms that improve aut
         Machine learning algorithms are used in a wide variety of applications, such as email filtering and computer vision, where it is difficult or infeasible to develop conventional algorithms to perform the needed tasks."
 
 text_mito = "The mitochondrion is a double membrane bound organelle found in most eukaryotic organisms.\
+            They are also known as the powerhouse of the cell.\
             Some cells in some multicellular organisms may however lack them.\
             A number of unicellular organisms have transformed this into other structures.\
-            They are also known as the powerhouse of the cell.\
-            They take in nutrients breaks then down and creates energy rick molecules for the cells.\
+            They take in nutrients breaks them down and creates energy rich molecules for the cells.\
             The biochemical processes of the cell are known as cellular respiration"
 
 
