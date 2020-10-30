@@ -36,5 +36,4 @@ performed on the structural similarity to return the final score.
 * nltk, spaCy and gensim
 * Word Embedding models
 * OpenCV
-* Glob
 * pytesseract
