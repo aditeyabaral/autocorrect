@@ -17,28 +17,20 @@ text_mito = "The mitochondrion is a double membrane bound organelle found in mos
             The biochemical processes of the cell are known as cellular respiration"
 
 
-nlp = spacy.load("en_core_web_lg")
-resolved_text = utils.getResolvedText(text_mito, nlp)
+nlp = spacy.load("en_core_web_sm")
+resolved_text = utils.getResolvedText(text_ml, nlp)
 triples = utils.getTriplesFromText(resolved_text)
 
-df = pd.DataFrame()
-subject, relation, predicate  = list(), list(), list()
+#utils.tripleToDataFrame(triples, "before.csv")
 
-for t in triples:
-    subject.append(t["subject"])
-    relation.append(t["relation"])
-    predicate.append(t["object"])
+triples = utils.reduceTriples(triples)
 
-df["subject"] = subject
-df["edge"] = relation
-df["object"] = predicate
+df = utils.tripleToDataFrame(triples, "after.csv")
 
-print(df.head())
 
-df.to_csv("graph.csv")
-
-G = nx.from_pandas_edgelist(df, "subject", "object", edge_attr="edge", create_using=nx.MultiDiGraph())
+G = nx.from_pandas_edgelist(df, "subject", "object",
+                            edge_attr="edge", create_using=nx.MultiDiGraph())
 pos = nx.spring_layout(G)
-#print(G.edges)
-nx.draw(G, with_labels=True, node_color='skyblue', edge_cmap=plt.cm.Blues, pos = pos)
+nx.draw(G, with_labels=True, node_color='skyblue',
+        edge_cmap=plt.cm.Blues, pos=pos)
 plt.show()
