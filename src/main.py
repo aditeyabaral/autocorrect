@@ -2,7 +2,7 @@ import graph
 import scoring
 import sys
 
-key_answer_file, input_answer_file = sys.argv[1:]
+# key_answer_file, input_answer_file = sys.argv[1:]
 
 text_ml = "Machine learning is the study of computer algorithms that improve automatically through experience.\
         It is seen as a subset of artificial intelligence.\

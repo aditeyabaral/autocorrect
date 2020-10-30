@@ -1,6 +1,7 @@
 __pycache__
 neuralcoref
 .vscode
+ft_model*
 *.hg
 *.props
 *.csv
