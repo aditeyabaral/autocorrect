@@ -8,7 +8,7 @@ import pandas as pd
 stopw = stopwords.words("english")
 
 def preprocessText(text, lower=False):
-    text = re.sub(r"[^A-Za-z0-9\!\.\?\$\%]". " ", text)
+    text = re.sub(r"[^A-Za-z0-9\!\.\?\$\%]", " ", text)
     #text = re.sub(r"\(.*\)", "", text)
     text = re.sub(r" +", " ", text)
     text = re.sub("\n+", "\n", text)
@@ -70,13 +70,13 @@ def reduceTriples(triples):
             sub_edge_covered.append((subject, edge))
     return reduced_triples
 
-def getFilteredTriples(text):
-    triples = getTriplesFromText(text)
+'''def getFilteredTriples(triples):
     filtered_triples = []
-    test_list = []
-    for triple in triples:
-        check_string = " ".join(triple.values)
+    test_list = sorted([" ".join(triple.values() for triple in triples)])
+    for i in range(len(test_list)):
+        if not any(test_list[i] in sub for sub in test_list[i+1:]):
+        check_string = " ".join(triple.values())
         if not any(check_string in sub for sub in test_list):
             test_list.append(check_string)
             filtered_triples.append(triple)
-    return filtered_triples
+    return filtered_triples'''

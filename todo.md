@@ -1,6 +1,5 @@
 - [ ] Evaluation
-- [ ] Embedding model - get document embedding
-- [ ] Graph Reduction
 - [ ] Video
-- [ ] Improve graph maker
-- [ ] Neural Coref --> increase span
+- [ ] Improvements
+    - [ ] Neural Coref --> increase span
+    - [ ] 

@@ -18,15 +18,12 @@ text_mito = "The mitochondrion is a double membrane bound organelle found in mos
 
 
 nlp = spacy.load("en_core_web_sm")
-resolved_text = utils.getResolvedText(text_ml, nlp)
+resolved_text = utils.getResolvedText(text_mito, nlp)
 triples = utils.getTriplesFromText(resolved_text)
+utils.tripleToDataFrame(triples, "before.csv")
 
-#utils.tripleToDataFrame(triples, "before.csv")
-
-triples = utils.reduceTriples(triples)
-
+#triples = utils.reduceTriples(triples)
 df = utils.tripleToDataFrame(triples, "after.csv")
-
 
 G = nx.from_pandas_edgelist(df, "subject", "object",
                             edge_attr="edge", create_using=nx.MultiDiGraph())
