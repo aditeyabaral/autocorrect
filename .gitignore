@@ -2,7 +2,8 @@ __pycache__
 neuralcoref
 autocorrect
 .vscode
-ft_model*
+ft_model
+fastText_models
 *.hg
 *.props
 *.csv
