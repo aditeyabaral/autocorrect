@@ -1,6 +1,0 @@
-- [ ] Video
-- [ ] PPT (screenshots)
-- [ ] Devfolio submission (details to be filled)
-- [ ] Improvements
-    - [ ] Neural Coref --> increase span (try stanford) [PROGRESS]
-    - [ ] Better graph reduction (new algorithm) [OPTIONAL]
