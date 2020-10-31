@@ -62,8 +62,11 @@ class App:
         self.score_button.config(height=2, width=30, borderwidth=0)
         self.score_button.pack(side=TOP, expand=1)
         self.blank = Label(self.root, bg="#d2d2c9")
+        self.openie_client = utils.getOpenieClient()
+        self.openie_client.annotate("This is to initialize the client")
         self.blank.pack()
 
+        self.root.protocol("WM_DELETE_WINDOW", self.onClose)
         self.root.mainloop()
 
     def getMarks(self):
@@ -75,12 +78,16 @@ class App:
             self.marks.set("Error in Input Answer: No answer provided.")
         else:
             self.marks.set("GRADING...")
-            key_answer_graph = graph.createGraph(self.keyAnswer.strip(), "key")
-            input_answer_graph = graph.createGraph(self.inputAnswer.strip(), "ans")
+            key_answer_graph = graph.createGraph(self.keyAnswer.strip(), "key", self.openie_client)
+            input_answer_graph = graph.createGraph(self.inputAnswer.strip(), "ans", self.openie_client)
             #graph.displayGraph(key_answer_graph)
             #graph.displayGraph(input_answer_graph)
             total_marks = scoring.evaluate(key_answer_graph, input_answer_graph, 4)
             self.marks.set(f"Score: {utils.roundMarks(total_marks)}")
+
+    def onClose(self):
+        self.openie_client.__del__()
+        self.root.destroy()
 
 
 App()

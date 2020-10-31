@@ -7,9 +7,9 @@ import utils
 nlp = spacy.load("en_core_web_sm")
 
 
-def createGraph(text, fn):
+def createGraph(text, fn, openie_client):
     resolved_text = utils.getResolvedText(text, nlp)
-    triples = utils.getTriplesFromText(resolved_text)
+    triples = utils.getTriplesFromText(resolved_text, openie_client)
     utils.tripleToDataFrame(triples, f"{fn}_before.csv")
 
     triples = utils.getFilteredTriples(triples)

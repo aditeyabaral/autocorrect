@@ -1,5 +1,6 @@
 import graph
 import scoring
+import utils
 import sys
 import time
 
@@ -37,12 +38,14 @@ with open(input_answer_file) as f:
 
 key_answer = text_ml
 input_answer = ans_ml
+openie_client = utils.getOpenieClient()
 
-key_answer_graph = graph.createGraph(key_answer, "key")
-input_answer_graph = graph.createGraph(input_answer, "ans")
+key_answer_graph = graph.createGraph(key_answer, "key", openie_client)
+input_answer_graph = graph.createGraph(input_answer, "ans", openie_client)
 
 start = time.time()
 marks = scoring.evaluate(key_answer_graph, input_answer_graph, 4)
 end=time.time()
 print(f"Time taken to evaluate: {end-start} seconds")
 print((marks))
+openie_client.__del__()

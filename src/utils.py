@@ -44,10 +44,12 @@ def getResolvedText(text, spacy_nlp_model):
     return document._.coref_resolved
 
 
-def getTriplesFromText(text):
-    with StanfordOpenIE() as client:
-        triples = client.annotate(text)
-        return triples
+def getOpenieClient():
+    return StanfordOpenIE()
+
+def getTriplesFromText(text, client):
+    triples = client.annotate(text)
+    return triples
 
 
 def tripleToDataFrame(triples, name):

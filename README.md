@@ -39,8 +39,6 @@ concepts as well as the structure of the answer. A comparison is made by dividin
 based on the position of leaf nodes and contextual embeddings are used to compare similarity. Finally, a check is
 performed on the structural similarity to return the final score.
 
-
-
 ## How to run AutoCorrect?
 1. Clone the repo
 ```bash
