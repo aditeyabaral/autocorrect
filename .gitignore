@@ -1,5 +1,6 @@
 __pycache__
 neuralcoref
+autocorrect
 .vscode
 ft_model*
 *.hg

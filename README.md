@@ -31,6 +31,32 @@ concepts as well as the structure of the answer. A comparison is made by dividin
 based on the position of leaf nodes and contextual embeddings are used to compare similarity. Finally, a check is
 performed on the structural similarity to return the final score.
 
+## How to run AutoCorrect?
+1. Clone the repo
+```bash
+git clone https://github.com/aditeyabaral/autocorrect-ingenius-2020
+```
+
+2. Since the libraries have strict dependency rules, it is advisable to create a new environment.
+```bash
+cd autocorrect
+pip3 install virtualenv
+virtualenv autocorrect
+source autocorrect/bin/activate
+```
+
+3. Install the dependencies
+```bash
+pip3 install -r requirements.txt
+```
+
+4. Install Java-8 for your distribution
+
+5. Run the GUI script
+```bash
+python3 gui.py
+```
+
 ## Technology Stack
 Python3 is used for all parts of the project. The specific libraries used are -
 * Natural Language Processing
