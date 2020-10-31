@@ -8,7 +8,7 @@ class App:
         self.root = Tk()
         self.root.title("AutoCorrect")
         self.root.configure(background="#d2d2c9")
-        self.root.geometry("800x900")
+        self.root.geometry("480x640")
         self.keyAnswer = None
         self.inputAnswer = None
         self.marks = StringVar()
@@ -28,7 +28,7 @@ class App:
         )
         self.welcome.config(fg="#6d031c", font=("Comfortaa", 30))
         self.welcome.pack()
-        self.key_answer_box = Text(self.root)
+        self.key_answer_box = Text(self.root, height=15)
         self.key_answer_box.pack()
         self.blank = Label(self.root, bg="#d2d2c9")
         self.blank.pack()
@@ -37,7 +37,7 @@ class App:
         )
         self.welcome.config(fg="#6d031c", font=("Comfortaa", 30))
         self.welcome.pack()
-        self.input_answer_box = Text(self.root)
+        self.input_answer_box = Text(self.root, height=15)
         self.input_answer_box.pack()
         self.blank = Label(self.root, bg="#d2d2c9")
         self.blank.pack()
@@ -46,7 +46,7 @@ class App:
             textvariable=self.marks,
             bg="#d2d2c9",
             font=("Calibri"),
-            fg="white",
+            fg="#6d031c",
         )
         self.grade_box.pack()
         self.blank = Label(self.root, bg="#d2d2c9")
