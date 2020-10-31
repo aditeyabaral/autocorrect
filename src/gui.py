@@ -77,8 +77,8 @@ class App:
             self.marks.set("GRADING...")
             key_answer_graph = graph.createGraph(self.keyAnswer.strip(), "key")
             input_answer_graph = graph.createGraph(self.inputAnswer.strip(), "ans")
-            graph.displayGraph(key_answer_graph)
-            graph.displayGraph(input_answer_graph)
+            #graph.displayGraph(key_answer_graph)
+            #graph.displayGraph(input_answer_graph)
             total_marks = scoring.evaluate(key_answer_graph, input_answer_graph, 4)
             self.marks.set(f"Score: {utils.roundMarks(total_marks)}")
 
