@@ -21,6 +21,21 @@ def preprocessText(text, lower=False):
         text = text.lower()
     return text
 
+def roundMarks(x):
+    temp = round(x, 2)
+    x = str(temp)
+    decimal_pos = x.find(".")
+    if decimal_pos != -1:
+        whole = int(x[:decimal_pos])
+        fraction = int(x[decimal_pos+1:])
+        if fraction != 0:
+            if fraction >= 50:
+                whole+=1
+                fraction = 0
+            else:
+                fraction = 0.5
+    number = whole + fraction
+    return number
 
 def getResolvedText(text, spacy_nlp_model):
     if "neuralcoref" not in spacy_nlp_model.pipe_names:
