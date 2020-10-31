@@ -10,9 +10,14 @@ text_ml = "Machine learning is the study of computer algorithms that improve aut
         Machine learning algorithms build a mathematical model based on sample data, known as training data, in order to make predictions or decisions without being explicitly programmed to do so.\
         Machine learning algorithms are used in a wide variety of applications, such as email filtering and computer vision, where it is difficult or infeasible to develop conventional algorithms to perform the needed tasks."
 
-ans_ml = "Machine learning is the study of computer algorithms that improve automatically through experience.\
-        It is seen as a subset of artificial intelligence.\
-        Machine learning algorithms build a mathematical model based on sample data, known as training data, in order to make predictions or decisions without being explicitly programmed to do so."
+# ans_ml = "Machine learning is the study of computer algorithms that improve automatically through experience.\
+#         Machine learning algorithms build a mathematical model based on sample data, known as training data, in order to make predictions or decisions without being explicitly programmed to do so.\
+#         Machine learning algorithms are used in a wide variety of applications, such as email filtering and computer vision, where it is difficult or infeasible to develop conventional algorithms to perform the needed tasks."
+
+ans_ml = "Machine learning is the study of algorithms that improve through experience.\
+        It is a subset of artificial intelligence.\
+        Machine learning algorithms build mathematical models based on sample data in order to make predictions or decisions without being explicitly programmed to do so.\
+        Machine learning algorithms are used in a wide variety of applications, such as email filtering and computer vision"
 
 text_mito = "The mitochondrion is a double membrane bound organelle found in most eukaryotic organisms.\
             They are also known as the powerhouse of the cell.\
@@ -39,5 +44,5 @@ input_answer_graph = graph.createGraph(input_answer, "ans")
 start = time.time()
 marks = scoring.evaluate(key_answer_graph, input_answer_graph, 4)
 end=time.time()
-print(f"Time taken to grade: {end-start} seconds")
+print(f"Time taken to evaluate: {end-start} seconds")
 print((marks))

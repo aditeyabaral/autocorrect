@@ -1,16 +1,15 @@
-import logging
-
-import networkx as nx
+# import logging
+# 
+# import networkx as nx
 from gensim.models.fasttext import FastText
 
-import embedding
 import utils
 
-logging.basicConfig(
-    format="%(asctime)s : %(levelname)s : %(message)s", level=logging.INFO
-)
+# logging.basicConfig(
+#     format="%(asctime)s : %(levelname)s : %(message)s", level=logging.INFO
+# )
 
-model = FastText.load("../ft_models/machine_learning/ai-norvig.model")
+model = FastText.load("../ft_models/ft.model")
 
 
 def evaluate(key_graph, ans_graph, total_marks=5):
@@ -44,19 +43,57 @@ def evaluate(key_graph, ans_graph, total_marks=5):
             sp_ans = list(filter(lambda x: x is not None, sp_ans))
             kw_score = 0
             for keyword in sp_key:
+                max_sim = 0
+                max_sim_node = 0
                 for ans_keyword in sp_ans:
-                    if utils.getSimilarity(keyword, ans_keyword["node"], model) >= 0.85:
-                        kw_score += (
+                    cur_sim = utils.getSimilarity(keyword, ans_keyword["node"], model)
+                    if cur_sim > max_sim:
+                        max_sim = cur_sim
+                        max_sim_node = ans_keyword
+                    # print("Trying to match", keyword, ans_keyword["node"])
+
+                if max_sim >= 0.75:
+                    # print("Matched")
+                    best_edge_sim = max(
+                        [
                             utils.getSimilarity(
-                                key_graph[mp_key][keyword][0]['edge'],
-                                ans_graph[ans_keyword["parent"]["node"]][ans_keyword["node"]][0]['edge'],
+                                key_graph[mp_key][keyword][key_edge]["edge"],
+                                ans_graph[max_sim_node["parent"]["node"]][
+                                    max_sim_node["node"]
+                                ][ans_edge]["edge"],
                                 model,
                             )
-                            * ans_keyword["parent"]["sim"]
-                        )
-                        break
+                            for key_edge in key_graph[mp_key][keyword]
+                            for ans_edge in ans_graph[max_sim_node["parent"]["node"]][
+                                max_sim_node["node"]
+                            ]
+                        ]
+                    )
+
+                    best_edge_sim = 1 if best_edge_sim > 0.85 else best_edge_sim
+                    score_for_kw = best_edge_sim * max_sim_node["parent"]["sim"]
+                    # print(
+                    #     "Score for keyword\n",
+                    #     "Key keyword:",
+                    #     keyword,
+                    #     "Ans keyword:",
+                    #     max_sim_node["node"],
+                    #     "Key relation:",
+                    #     key_graph[mp_key][keyword][0]["edge"],
+                    #     "Ans relation:",
+                    #     ans_graph[max_sim_node["parent"]["node"]][max_sim_node["node"]][
+                    #         0
+                    #     ]["edge"],
+                    #     "Score:",
+                    #     score_for_kw,
+                    # )
+                    kw_score += score_for_kw
+                # else:
+                #     print("Unmatched score:", max_sim)
 
             kw_score_ratio = kw_score / len(sp_key)
+            # print(kw_score_ratio)
+            # print("Score for key kw", keyword, kw_score_ratio * marks_per_mp)
             total_score += kw_score_ratio * marks_per_mp
 
     return total_score
