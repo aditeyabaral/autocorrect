@@ -4,5 +4,3 @@
 - [ ] Improvements
     - [ ] Neural Coref --> increase span (try stanford) [PROGRESS]
     - [ ] Better graph reduction (new algorithm) [OPTIONAL]
-    - [ ] Better embedding model (contextual embeddings) [OPTIONAL]
-    - [ ] Optimise Evaluation --> checking similarity values [PROGRESS]
