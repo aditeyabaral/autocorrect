@@ -9,7 +9,7 @@ import utils
 #     format="%(asctime)s : %(levelname)s : %(message)s", level=logging.INFO
 # )
 
-model = FastText.load("../ft_models/ft.model")
+model = FastText.load("../ft_models/machine_learning/ai-norvig.model")
 
 
 def evaluate(key_graph, ans_graph, total_marks=5):
