@@ -1,7 +1,7 @@
 # AutoCorrect
 A novel method of automatically grading descriptive answers, using Natural Language Processing.
 
-![Result Image](screenshots/eval.png)
+![Result Image](presentation/screenshots/eval.png)
 
 ## Too many papers!
 
@@ -67,7 +67,7 @@ pip3 install -r requirements.txt
 >>> nltk.download("stopwords")
 ```
 
-6. Download the [fastText embedding models](https://drive.google.com/drive/folders/19KATLUZh1b3JBgGBXjijKXbXS0V2pZDZ?usp=sharing) and place them in the root directory
+6. Download the [fastText embedding models](https://drive.google.com/drive/folders/1-I1t2GGPYarctoIL7SvM3aJw2LbWphKo?usp=sharing) and place them in a folder named `ft_model` in the root directory.
 
 7. Run the GUI script
 ```bash
