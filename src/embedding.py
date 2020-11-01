@@ -9,8 +9,7 @@ def createFastTextModel(corpus):
     train = list(map(word_tokenize, sentences))
     model = FastText(min_count=1, size=200)
     model.build_vocab(sentences=train)
-    model.train(sentences=train,
-                total_examples=ft_model.corpus_count, epochs=20)
+    model.train(sentences=train, total_examples=ft_model.corpus_count, epochs=20)
     return model
 
 
@@ -19,8 +18,7 @@ def createWord2VecModel(corpus):
     train = list(map(word_tokenize, sentences))
     model = Word2Vec(min_count=1, size=200)
     model.build_vocab(sentences=train)
-    model.train(sentences=train,
-                total_examples=ft_model.corpus_count, epochs=20)
+    model.train(sentences=train, total_examples=ft_model.corpus_count, epochs=20)
     return model
 
 
@@ -35,7 +33,7 @@ def createEmbeddingModel(corpus, mode="fastText"):
 def getSentenceEmbedding(document, model, mode="average"):
     if mode == "average":
         words = word_tokenize(document)
-        avg_embedding = np.zeros(len(model.wv['test']))
+        avg_embedding = np.zeros(len(model.wv["test"]))
         counter = 1
         for w in words:
             try:
@@ -43,10 +41,10 @@ def getSentenceEmbedding(document, model, mode="average"):
                 counter += 1
             except:
                 pass
-        return avg_embedding/counter
+        return avg_embedding / counter
 
     else:
-        '''Add weighted average here'''
+        """Add weighted average here"""
         # sentence_set = []
         # for sentence in sentence_list:
         #     vs = np.zeros(embedding_size)

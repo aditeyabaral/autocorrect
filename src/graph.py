@@ -24,6 +24,5 @@ def createGraph(text, fn, openie_client):
 
 def displayGraph(G):
     pos = nx.spring_layout(G)
-    nx.draw(G, with_labels=True, node_color='skyblue',
-            edge_cmap=plt.cm.Blues, pos=pos)
+    nx.draw(G, with_labels=True, node_color="skyblue", edge_cmap=plt.cm.Blues, pos=pos)
     plt.show()

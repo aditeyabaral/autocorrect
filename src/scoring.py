@@ -1,5 +1,5 @@
 # import logging
-# 
+#
 # import networkx as nx
 from gensim.models.fasttext import FastText
 
@@ -27,7 +27,8 @@ def evaluate(key_graph, ans_graph, total_marks=5):
             if best_match_sim < mp_sim:
                 best_match_sim = mp_sim
                 best_match = mp_key
-        most_similar[best_match].append({"node": mp_ans, "sim": best_match_sim})
+        if best_match:
+            most_similar[best_match].append({"node": mp_ans, "sim": best_match_sim})
 
     total_score = 0
     for mp_key in most_similar:

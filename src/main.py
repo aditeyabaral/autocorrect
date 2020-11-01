@@ -30,11 +30,11 @@ text_mito = "The mitochondrion is a double membrane bound organelle found in mos
 
 text_ml2 = "Machine Learning is a branch of artificial intelligence. Its applications include CV and NLP"
 
-'''with open(key_answer_file) as f:
+"""with open(key_answer_file) as f:
     key_answer = f.read().strip()
 
 with open(input_answer_file) as f:
-    input_answer = f.read().strip()'''
+    input_answer = f.read().strip()"""
 
 key_answer = text_ml
 input_answer = ans_ml
@@ -45,7 +45,7 @@ input_answer_graph = graph.createGraph(input_answer, "ans", openie_client)
 
 start = time.time()
 marks = scoring.evaluate(key_answer_graph, input_answer_graph, 4)
-end=time.time()
+end = time.time()
 print(f"Time taken to evaluate: {end-start} seconds")
 print((marks))
 openie_client.__del__()
