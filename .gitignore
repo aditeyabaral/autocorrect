@@ -1,11 +1,5 @@
 __pycache__
-neuralcoref
+venv
 autocorrect
 .vscode
-ft_model
-fastText-models
-fastText_models
-*.hg
-*.props
-*.csv
-.~*
+todo.md

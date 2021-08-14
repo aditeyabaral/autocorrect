@@ -1,20 +1,11 @@
-# import logging
-#
-# import networkx as nx
-from gensim.models.fasttext import FastText
-
 import utils
 
-# logging.basicConfig(
-#     format="%(asctime)s : %(levelname)s : %(message)s", level=logging.INFO
-# )
 
-model = FastText.load("../ft_model/ft.model")
-
-
-def evaluate(key_graph, ans_graph, total_marks=5):
-    main_points_key = [x for x in key_graph.nodes if key_graph.out_degree(x) != 0]
-    main_points_ans = [x for x in ans_graph.nodes if ans_graph.out_degree(x) != 0]
+def evaluate(model, key_graph, ans_graph, total_marks=5):
+    main_points_key = [
+        x for x in key_graph.nodes if key_graph.out_degree(x) != 0]
+    main_points_ans = [
+        x for x in ans_graph.nodes if ans_graph.out_degree(x) != 0]
     marks_per_mp = total_marks / len(main_points_key)
 
     most_similar = dict((x, []) for x in main_points_key)
@@ -28,7 +19,8 @@ def evaluate(key_graph, ans_graph, total_marks=5):
                 best_match_sim = mp_sim
                 best_match = mp_key
         if best_match:
-            most_similar[best_match].append({"node": mp_ans, "sim": best_match_sim})
+            most_similar[best_match].append(
+                {"node": mp_ans, "sim": best_match_sim})
 
     total_score = 0
     for mp_key in most_similar:
@@ -37,7 +29,8 @@ def evaluate(key_graph, ans_graph, total_marks=5):
                 x for x in key_graph.neighbors(mp_key) if key_graph.out_degree(x) == 0
             ]
             sp_ans = [
-                {"node": x, "parent": a} if ans_graph.out_degree(x) == 0 else None
+                {"node": x, "parent": a} if ans_graph.out_degree(
+                    x) == 0 else None
                 for a in most_similar[mp_key]
                 for x in ans_graph.neighbors(a["node"])
             ]
@@ -47,7 +40,8 @@ def evaluate(key_graph, ans_graph, total_marks=5):
                 max_sim = 0
                 max_sim_node = 0
                 for ans_keyword in sp_ans:
-                    cur_sim = utils.getSimilarity(keyword, ans_keyword["node"], model)
+                    cur_sim = utils.getSimilarity(
+                        keyword, ans_keyword["node"], model)
                     if cur_sim > max_sim:
                         max_sim = cur_sim
                         max_sim_node = ans_keyword
@@ -72,7 +66,8 @@ def evaluate(key_graph, ans_graph, total_marks=5):
                     )
 
                     best_edge_sim = 1 if best_edge_sim > 0.85 else best_edge_sim
-                    score_for_kw = best_edge_sim * max_sim_node["parent"]["sim"]
+                    score_for_kw = best_edge_sim * \
+                        max_sim_node["parent"]["sim"]
                     # print(
                     #     "Score for keyword\n",
                     #     "Key keyword:",

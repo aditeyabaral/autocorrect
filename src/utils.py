@@ -1,13 +1,12 @@
 import re
-
+from gensim.models.fasttext import FastText
+from gensim.models.word2vec import Word2Vec
 import neuralcoref
 import numpy as np
 import pandas as pd
-import spacy
+import embedding
 from nltk.corpus import stopwords
 from openie import StanfordOpenIE
-
-import embedding
 
 stopw = stopwords.words("english")
 
@@ -25,10 +24,12 @@ def preprocessText(text, lower=False):
 def roundMarks(x):
     temp = round(x, 2)
     x = str(temp)
-    decimal_pos = x.find(".")
-    if decimal_pos != -1:
-        whole = int(x[:decimal_pos])
-        fraction = int(x[decimal_pos + 1 :])
+    fraction = 0.0
+    whole = x
+    decimal_postion = x.find(".")
+    if decimal_postion != -1:
+        whole = int(x[:decimal_postion])
+        fraction = int(x[decimal_postion + 1:])
         if fraction != 0:
             if fraction >= 50:
                 whole += 1
@@ -99,23 +100,32 @@ def reduceTriples(triples):
                         to_append = True
         else:
             to_append = True
+
         if to_append:
             reduced_triples.append(t)
             sub_edge_covered.append((subject, edge))
+
     return reduced_triples
 
 
 def getFilteredTriples(triples):
     filtered_triples = []
-    test_list = sorted(list((" ".join(triple.values()), triple) for triple in triples))
+    test_list = sorted(list((" ".join(triple.values()), triple)
+                       for triple in triples))
     for i in range(len(test_list)):
-        if not any(test_list[i][0] in sub[0] for sub in test_list[i + 1 :]):
+        if not any(test_list[i][0] in sub[0] for sub in test_list[i + 1:]):
             filtered_triples.append(test_list[i][1])
     return filtered_triples
 
 
 def getSimilarity(p1, p2, model):
-    v1 = embedding.getSentenceEmbedding(p1, model)
-    v2 = embedding.getSentenceEmbedding(p2, model)
-    cosine_sim = np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
-    return cosine_sim
+    if isinstance(model, FastText) or isinstance(model, Word2Vec):
+        v1 = embedding.getSentenceEmbeddingFromWordEmbedding(p1, model)
+        v2 = embedding.getSentenceEmbeddingFromWordEmbedding(p2, model)
+    else:
+        v1 = embedding.getSentenceTransformerEmbedding(p1, model)
+        v2 = embedding.getSentenceTransformerEmbedding(p2, model)
+
+    cosine_similarity = np.dot(
+        v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
+    return cosine_similarity
