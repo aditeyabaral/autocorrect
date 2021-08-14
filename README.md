@@ -1,7 +1,7 @@
 # AutoCorrect
 A novel method of automatically grading descriptive answers, using Natural Language Processing.
 
-![Result Image](presentation/screenshots/eval.png)
+![Result Image](docs/screenshots/eval.png)
 
 ## Too many papers!
 
