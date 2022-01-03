@@ -113,7 +113,7 @@ def fineTuneEmbeddingLayer(train_text_path, model_type, model_name):
         "train_batch_size": 8,
         "gradient_accumulation_steps": 8,
         "num_train_epochs": 3,
-        "mlm": False,   # enable this?
+        "mlm": True,
         "output_dir": "fine-tuned-embeddings",
     }
 
@@ -121,10 +121,11 @@ def fineTuneEmbeddingLayer(train_text_path, model_type, model_name):
     model.train_model(train_text_path)
 
 
-def fineTuneSentenceTransformerModel(train_text_path, model_type="bert", model_name="bert-base-cased"):
+def fineTuneSentenceTransformerModel(train_text_path, model_name="bert", model_path="bert-base-cased"):
     fineTuneEmbeddingLayer(
-        train_text_path, model_type, model_name)
+        train_text_path, model_name, model_path)
     embedding_model = models.Transformer("fine-tuned-embeddings")
+    # add tokens?
     pooling_model = models.Pooling(embedding_model.get_word_embedding_dimension(),
                                    pooling_mode_mean_tokens=True,
                                    pooling_mode_cls_token=False,
