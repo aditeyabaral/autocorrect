@@ -110,7 +110,7 @@ def fineTuneEmbeddingLayer(train_text_path, model_type, model_name):
         "block_size": 512,
         "max_seq_length": 512,
         "learning_rate": 5e-6,
-        "train_batch_size": 8,
+        "train_batch_size": 2,
         "gradient_accumulation_steps": 8,
         "num_train_epochs": 3,
         "mlm": True,
